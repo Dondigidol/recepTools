@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+}
+
+.tables{
+    border-collapse: collapse;
+    background: rgba(128,128,128, 0.5);
+}
+
+.tables td{
+    border: 1px solid black;
+    padding: 5px;
+}
