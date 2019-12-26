@@ -3,24 +3,24 @@ package application.entities;
 
 public class Item {
 
-    private int lm;
+    private String lm;
     private String ean;
     private String name;
-    private int orderId;
+    private String orderId;
     private String recepDate;
-    private int recepId;
+    private String recepId;
     private int quantity;
-    private int supplierId;
+    private String supplierId;
     private String supplierName;
-    private int department;
+    private String department;
     private String reason;
 
 
-    public int getLm() {
+    public String getLm() {
         return lm;
     }
 
-    public void setLm(int lm) {
+    public void setLm(String lm) {
         this.lm = lm;
     }
 
@@ -40,11 +40,11 @@ public class Item {
         this.name = name;
     }
 
-    public int getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -56,11 +56,11 @@ public class Item {
         this.recepDate = recepDate;
     }
 
-    public int getRecepId() {
+    public String getRecepId() {
         return recepId;
     }
 
-    public void setRecepId(int recepId) {
+    public void setRecepId(String recepId) {
         this.recepId = recepId;
     }
 
@@ -72,11 +72,11 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(String supplierId) {
         this.supplierId = supplierId;
     }
 
@@ -88,11 +88,11 @@ public class Item {
         this.supplierName = supplierName;
     }
 
-    public int getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    public void setDepartment(int department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 
