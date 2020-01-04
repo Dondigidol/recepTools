@@ -1,8 +1,14 @@
 package application.entities;
 
 
+import javax.persistence.*;
+
+@Entity
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String lm;
     private String ean;
     private String name;
@@ -10,11 +16,13 @@ public class Item {
     private String recepDate;
     private String recepId;
     private int quantity;
-    private String supplierId;
     private String supplierName;
     private String department;
     private String reason;
 
+    public Long getId() {
+        return id;
+    }
 
     public String getLm() {
         return lm;
@@ -72,14 +80,6 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public String getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
-    }
-
     public String getSupplierName() {
         return supplierName;
     }
@@ -102,5 +102,21 @@ public class Item {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    @Override
+    public String toString(){
+        return("Item = {" +
+                "id="+id+
+                ", lm=" + lm +
+                ", ean = " + ean +
+                ", name = " + name +
+                ", orderId="+orderId+
+                ", recepDate="+recepDate+
+                ", recepId="+recepId+
+                ", quantity="+quantity+
+                ", supplierName="+supplierName+
+                ", department="+department+
+                ", reason="+reason);
     }
 }

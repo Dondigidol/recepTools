@@ -6,16 +6,16 @@
 </head>
 <body>
     <form method="post" action="">
-        <label>ЛМ <input type="text" th:value="${lm}"/></label><br>
-        <label>ШК <input type="text" th:value="${ean}"/></label><br>
-        <label>Наименование <input type="text" th:value="${name}" /></label><br>
-        <label>№ заказа <input type="text" th:value="${orderId}" /></label><br>
-        <label>Дата приемки <input type="text" th:value="${recepDate}" /></label><br>
-        <label>№ приемки <input type="text" th:value="${recepId}" /></label><br>
-        <label>Кол-во <input type="text" th:value="${quantity}" /></label><br>
-        <label>Поставщик <input type="text" th:value="${supplierName}" /></label><br>
-        <label>Отдел <input type="text" th:value="${department}" /></label><br>
-        <label>Причина <input type="text" th:value="${reason}" /></label><br>
+        <label>ЛМ <input type="text" name="lm"/></label><br>
+        <label>ШК <input type="text" name="ean"/></label><br>
+        <label>Наименование <input type="text" name="name" /></label><br>
+        <label>№ заказа <input type="text" name="orderId" /></label><br>
+        <label>Дата приемки <input type="text" name="recepDate" /></label><br>
+        <label>№ приемки <input type="text" name="recepId" /></label><br>
+        <label>Кол-во <input type="text" name="quantity" /></label><br>
+        <label>Поставщик <input type="text" name="supplierName" /></label><br>
+        <label>Отдел <input type="text" name="department" /></label><br>
+        <label>Причина <input type="text" name="reason" /></label><br>
         <button type="submit">Сохранить</button>
     </form>
     <p th:text="${output}"/>
