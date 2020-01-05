@@ -1,8 +1,20 @@
 package application.entities;
 
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
 public class Product {
+
+    @Column(name = "lm")
     private String lm;
+    @Column(name = "ean")
     private String ean;
+    @Column(name = "name")
     private String name;
 
     public Product(){
