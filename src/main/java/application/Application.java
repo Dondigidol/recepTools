@@ -3,6 +3,7 @@ package application;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.*;
@@ -15,9 +16,9 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    static PropertySourcesPlaceholderConfigurer pspc(){
-        return new PropertySourcesPlaceholderConfigurer();
+   /* @Bean
+        static PropertySourcesPlaceholderConfigurer pspc(){
+            return new PropertySourcesPlaceholderConfigurer();
     }
 
 
@@ -25,13 +26,17 @@ public class Application {
     @Profile("dev")
     @PropertySource("dev.properties")
     public static class DevConfiguration{
+
+        @Value("${configuration.profile}")
+        private String profileName;
+
         @Bean
         InitializingBean init(){
-            System.out.println("dweqweqweqweqwe");
+            System.out.println("Activated profile: " + this.profileName);
             return()->LogFactory.getLog(getClass()).info("dev initializing");
 
         }
     }
-
+*/
 
 }

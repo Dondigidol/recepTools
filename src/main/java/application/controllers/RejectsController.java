@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.entities.Item;
 import application.entities.Product;
+import application.repositories.OrderInfoRepository;
 import application.repositories.ProductRepository;
 import application.repositories.RejectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
