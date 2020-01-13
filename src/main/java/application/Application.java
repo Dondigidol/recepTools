@@ -28,6 +28,17 @@ public class Application {
         }
 
     }
+
+    @Configuration
+    @Profile("prod")
+    @PropertySource("prod.properties")
+    public static class ProdConfiguration{
+
+        @Bean
+        InitializingBean init(){
+            return ()-> LogFactory.getLog(getClass()).info("prod configuration initializing");
+        }
+    }
 }
 
 

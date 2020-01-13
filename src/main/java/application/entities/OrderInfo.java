@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "ordloc", schema = "rms_p009qtz_rms_ods")
+@Table(name = "ordloc", schema = "rms_p009qtzb_rms_ods")
 public class OrderInfo {
 
     @Id
@@ -12,8 +12,8 @@ public class OrderInfo {
     private Integer orderNo;
     @Column
     private String item;
-    @Column
-    private Integer location;
+    @Column(name = "location")
+    private Integer store;
     @Column(name = "qty_ordered")
     private Integer qty;
     @Column(name = "unit_cost")
@@ -45,12 +45,12 @@ public class OrderInfo {
         this.createdDate = createdDate;
     }
 
-    public Integer getLocation() {
-        return location;
+    public Integer getStore() {
+        return store;
     }
 
-    public void setLocation(int location) {
-        this.location = location;
+    public void setStore(int store) {
+        this.store = store;
     }
 
     public Integer getQty() {
