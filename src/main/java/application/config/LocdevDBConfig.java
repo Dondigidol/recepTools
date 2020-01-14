@@ -1,11 +1,13 @@
 package application.config;
 
 import application.entities.Product;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,7 +20,9 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "locdevEntityManagerFactory",
+@EnableJpaRepositories(
+        basePackages = "application.repositories.locdev",
+        entityManagerFactoryRef = "locdevEntityManagerFactory",
         transactionManagerRef = "locdevTransactionManager")
 public class LocdevDBConfig {
 
@@ -33,7 +37,12 @@ public class LocdevDBConfig {
     @Primary
     @ConfigurationProperties("datasource.locdev.configuration")
     public DataSource locdevDataSource(){
-        return locdevDataSourceProperties().initializeDataSourceBuilder().build();
+        return locdevDataSourceProperties()
+                .initializeDataSourceBuilder()
+                    .url("jdbc:mysql://10.80.176.27/dataplatform?useTimezone=true&serverTimezone=UTC")
+                    .username("60031809")
+                    .password("QdaWGbBAgS9z3AVW")
+                .build();
     }
 
     @Primary

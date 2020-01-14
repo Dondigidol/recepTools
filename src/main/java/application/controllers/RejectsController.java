@@ -1,12 +1,8 @@
 package application.controllers;
 
 import application.entities.Item;
-import application.entities.Product;
-import application.repositories.OrderInfoRepository;
-import application.repositories.ProductRepository;
 import application.repositories.RejectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RejectsController {
-
-    @Autowired
-    RejectRepository rejectRepository;
 
     @PostMapping("/saveitem")
     public void saveItem(@RequestParam(name="lm", required = false) String lm,
@@ -42,7 +35,7 @@ public class RejectsController {
         item.setSupplierName(supplierName);
         item.setDepartment(department);
         item.setReason(reason);
-        rejectRepository.save(item);
+        //rejectRepository.save(item);
 
 
         model.addAttribute("output", item.toString());

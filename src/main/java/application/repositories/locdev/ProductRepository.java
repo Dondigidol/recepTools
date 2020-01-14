@@ -1,4 +1,4 @@
-package application.repositories;
+package application.repositories.locdev;
 
 import application.entities.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
