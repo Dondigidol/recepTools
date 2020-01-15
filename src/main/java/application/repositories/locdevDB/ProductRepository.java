@@ -1,9 +1,6 @@
-package application.repositories.locdev;
+package application.repositories.locdevDB;
 
 import application.entities.Product;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

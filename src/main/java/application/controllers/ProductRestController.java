@@ -1,9 +1,13 @@
 package application.controllers;
 
-import application.entities.OrderInfo;
+import application.entities.Order;
 import application.entities.Product;
-import application.repositories.dataplatform.OrderInfoRepository;
-import application.repositories.locdev.ProductRepository;
+import application.entities.Shipment;
+import application.entities.Supplier;
+import application.repositories.dataplatformDB.OrderInfoRepository;
+import application.repositories.dataplatformDB.ShipmentRepository;
+import application.repositories.dataplatformDB.SupplierRepository;
+import application.repositories.locdevDB.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +24,12 @@ public class ProductRestController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    SupplierRepository supplierRepository;
+
+    @Autowired
+    ShipmentRepository shipmentRepository;
+
     @GetMapping("/getproduct")
     public List<Product> getItem(@RequestParam(value="lm") String lm){
         return productRepository.findByLm(lm);
@@ -31,14 +41,28 @@ public class ProductRestController {
     }
 
     @GetMapping("/getorderinfo")
-    public List<OrderInfo> getOrderByNo(@RequestParam(value = "store", required = false) Integer store,
-                                        @RequestParam(value = "order", required = false) Integer order,
-                                        @RequestParam(value = "lm", required = false) String lm,
-                                        @RequestParam(value = "date", required = false) String date) throws ParseException{
+    public List<Order> getOrderByNo(@RequestParam(value = "store", required = false) Integer store,
+                                    @RequestParam(value = "order", required = false) Integer order,
+                                    @RequestParam(value = "lm", required = false) String lm,
+                                    @RequestParam(value = "date", required = false) String date) throws ParseException{
         if (order != null && lm != null) return orderInfoRepository.findByOrderNoAndItem(order, lm);
         if (order != null) return orderInfoRepository.findByOrderNo(order);
         if (lm != null && store != null) return orderInfoRepository.findByStoreAndItem(store, lm);
         if (date != null && store !=null) return orderInfoRepository.findByStoreAndCreatedDateContaining(store, new SimpleDateFormat().parse(date));
+        return null;
+    }
+
+    @GetMapping("/getsupplier")
+    public List<Supplier> getSupplier(@RequestParam("id") long id){
+        return supplierRepository.findById(id);
+    }
+
+    @GetMapping("/getshipment")
+    public List<Shipment> getShipment(@RequestParam(value = "id", required = false) Long id,
+                                      @RequestParam(value = "lm", required = false) String lm){
+        if (id!=null && lm!=null) return shipmentRepository.findByIdAndLm(id, lm);
+        if(id!=null) return shipmentRepository.findById(id);
+        if(lm!=null) return shipmentRepository.findByLm(lm);
         return null;
     }
 

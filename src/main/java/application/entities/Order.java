@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "ordloc", schema = "rms_p009qtzb_rms_ods")
-public class OrderInfo {
+public class Order {
 
     @Id
     @Column(name = "order_no")

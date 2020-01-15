@@ -1,13 +1,11 @@
 package application.config;
 
-import application.entities.OrderInfo;
-import com.zaxxer.hikari.HikariDataSource;
+import application.entities.Order;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "application.repositories.dataplatform",
+        basePackages = "application.repositories.dataplatformDB",
         entityManagerFactoryRef = "dataplatformEntityManagerFactory",
         transactionManagerRef = "dataplatformTransactionManager")
 public class DatapaltformDBConfig {
@@ -34,19 +32,14 @@ public class DatapaltformDBConfig {
     @Bean
     @ConfigurationProperties("datasource.dataplatform.configuration")
     public DataSource dataplatformDataSource(){
-        return datapldatformDataSourceProperties()
-                .initializeDataSourceBuilder()
-                    .url("jdbc:postgresql://gp.data.lmru.tech:5432/adb")
-                    .username("p-pallet-usr-1")
-                    .password("P^Mp4.hp+@'mK'MG6vAW")
-                .build();
+        return datapldatformDataSourceProperties().initializeDataSourceBuilder().build();
     }
 
     @Bean(name = "dataplatformEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean dataplatformEntityManagerFactory(EntityManagerFactoryBuilder builder){
         return builder
                 .dataSource(dataplatformDataSource())
-                .packages(OrderInfo.class)
+                .packages(Order.class)
                 .build();
     }
 
