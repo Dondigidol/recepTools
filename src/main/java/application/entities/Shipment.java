@@ -22,17 +22,9 @@ public class Shipment {
     private Integer qtyReceived;
     @Column(name = "qty_expected")
     private Integer qtyExpected;
-    @OneToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "shipment.order_no")
-    private OrderReceiveChain orderReceiveChain;
 
-
-    public OrderReceiveChain getOrderReceiveChain() {
-        return orderReceiveChain;
-    }
-
-    public void setOrderReceiveChain(OrderReceiveChain orderReceiveChain) {
-        this.orderReceiveChain = orderReceiveChain;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public long getId() {

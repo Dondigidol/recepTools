@@ -1,10 +1,8 @@
 package application.controllers;
 
-import application.entities.Order;
-import application.entities.Product;
-import application.entities.Shipment;
-import application.entities.Supplier;
-import application.repositories.dataplatformDB.OrderInfoRepository;
+import application.entities.*;
+import application.repositories.dataplatformDB.OrderReceiveChainRepository;
+import application.repositories.dataplatformDB.OrderRepository;
 import application.repositories.dataplatformDB.ShipmentRepository;
 import application.repositories.dataplatformDB.SupplierRepository;
 import application.repositories.locdevDB.ProductRepository;
@@ -19,7 +17,7 @@ import java.util.List;
 public class ProductRestController {
 
     @Autowired
-    OrderInfoRepository orderInfoRepository;
+    OrderRepository orderRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -29,6 +27,9 @@ public class ProductRestController {
 
     @Autowired
     ShipmentRepository shipmentRepository;
+
+    @Autowired
+    OrderReceiveChainRepository orderReceiveChainRepository;
 
     @GetMapping("/getproduct")
     public List<Product> getItem(@RequestParam(value="lm") String lm){
@@ -45,10 +46,10 @@ public class ProductRestController {
                                     @RequestParam(value = "order", required = false) Integer order,
                                     @RequestParam(value = "lm", required = false) String lm,
                                     @RequestParam(value = "date", required = false) String date) throws ParseException{
-        if (order != null && lm != null) return orderInfoRepository.findByOrderNoAndItem(order, lm);
-        if (order != null) return orderInfoRepository.findByOrderNo(order);
-        if (lm != null && store != null) return orderInfoRepository.findByStoreAndItem(store, lm);
-        if (date != null && store !=null) return orderInfoRepository.findByStoreAndCreatedDateContaining(store, new SimpleDateFormat().parse(date));
+        if (order != null && lm != null) return orderRepository.findByOrderNoAndItem(order, lm);
+        if (order != null) return orderRepository.findByOrderNo(order);
+        if (lm != null && store != null) return orderRepository.findByStoreAndItem(store, lm);
+        if (date != null && store !=null) return orderRepository.findByStoreAndCreatedDateContaining(store, new SimpleDateFormat().parse(date));
         return null;
     }
 
@@ -61,8 +62,16 @@ public class ProductRestController {
     public List<Shipment> getShipment(@RequestParam(value = "id", required = false) Long id,
                                       @RequestParam(value = "lm", required = false) String lm){
         if (id!=null && lm!=null) return shipmentRepository.findByIdAndLm(id, lm);
-        if(id!=null) return shipmentRepository.findById(id);
+        if(id!=null) return shipmentRepository.findByShipmentId(id);
         if(lm!=null) return shipmentRepository.findByLm(lm);
+        return null;
+    }
+
+    @GetMapping("/getreceive")
+    public List<OrderReceiveChain> getOrderReceiveInfo(@RequestParam(value = "order", required = false) Long orderNo,
+                                                       @RequestParam(value = "shipment",required = false) Long shipment){
+        if (orderNo != null) return orderReceiveChainRepository.findByOrderNo(orderNo);
+        if (shipment != null) return orderReceiveChainRepository.findByShipment(shipment);
         return null;
     }
 

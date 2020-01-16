@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface OrderInfoRepository extends PagingAndSortingRepository<Order, Long> {
+public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
 
     List<Order> findByStoreAndItem(Integer store, String lm);
     List<Order> findByOrderNo(Integer orderNo);
